@@ -11,6 +11,7 @@ import com.qa.opencart.utils.ElementUtil;
 import io.qameta.allure.Step;
 
 public class LoginPage {
+	int i =10;
 	private WebDriver driver;
 	private ElementUtil eleUtil;
 	
@@ -30,14 +31,14 @@ public class LoginPage {
 	}
 	
 	//public page methods/actions
-	@Step("getting login page title....")
+	@Step("Getting login page title....")
 	public String getLoginPageTitle() {
 		String title = eleUtil.waitForTitleIs(AppConstants.LOGIN_PAGE_TITLE, AppConstants.DEFAULT_SHORT_WAIT);
 		//System.out.println("login page title: "+ title);
 		log.info("login page title: "+ title);	
 		return title;
 	}
-	@Step("getting login url title....")
+	@Step("Getting login url title....")
 	public String getLoginPageURL() {
 		String url = eleUtil.waitForURLContains(AppConstants.LOGIN_PAGE_FRACTION_URL, AppConstants.DEFAULT_SHORT_WAIT);
 		//System.out.println("login page url: "+ url);
