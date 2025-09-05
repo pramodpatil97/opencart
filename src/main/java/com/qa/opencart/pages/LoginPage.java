@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.qa.opencart.constants.AppConstants;
 import com.qa.opencart.utils.ElementUtil;
@@ -21,6 +22,7 @@ public class LoginPage {
 	private final By forgotPwdLink = By.linkText("Forgotten Password");
 	private final By header = By.tagName("h2");
 	private final By registerLink = By.linkText("Register");
+	private final By loginErrorMessg = By.cssSelector("div.alert.alert-danger.alert-dismissible");
 	private static final Logger log = LogManager.getLogger(LoginPage.class); 
 	
 	//public constructor
@@ -55,11 +57,29 @@ public class LoginPage {
 	@Step("login with username: {0} and password: {1}")
 	public AccountsPage doLogin(String appUsername, String appPassword) {
 		//System.out.println("Application credentials: "+ appUsername + ":"+ appPassword);
-		log.info("application credentials: "+ appUsername + " : " + appPassword);
+		log.info("application credentials: "+ appUsername + " : " + "*****");
 		eleUtil.waitForElementVisible(emailID, AppConstants.DEFAULT_MEDIUM_WAIT).sendKeys(appUsername);		
 		eleUtil.doSendKeys(password, appPassword);
 		eleUtil.doClick(loginBtn);
 		return new AccountsPage(driver);
+	}
+	@Step("login with in-correct username: {0} and password: {1}")
+	public boolean doLoginWithInvalidCredentails(String invalidUN, String invalidPWD) {
+		log.info("Invalid application credentials: " + invalidUN + " : " + invalidPWD);
+		WebElement emailEle = eleUtil.waitForElementVisible(emailID, AppConstants.DEFAULT_MEDIUM_WAIT);
+		emailEle.clear();
+		emailEle.sendKeys(invalidUN);
+		eleUtil.doSendKeys(password, invalidPWD);
+		eleUtil.doClick(loginBtn);
+		String errorMessg = eleUtil.doElementGetText(loginErrorMessg);
+		log.info("invalid creds error messg: " + errorMessg);
+		if (errorMessg.contains(AppConstants.LOGIN_BLANK_CREDS_MESSG)) {
+			return true;
+		}
+		else if (errorMessg.contains(AppConstants.LOGIN_INVALID_CREDS_MESSG)) {
+			return true;
+		}
+		return false;
 	}
 	@Step("navigating to register page...")
 	public RegisterPage navigateToRegisterPage() {
