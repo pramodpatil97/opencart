@@ -37,14 +37,17 @@ import io.qameta.allure.Step;
 			act =new Actions(driver);
 			jsUtil = new JavaScriptUtil(driver);
 		}
-		public void doSendKeys (By locator, String value) {
+		public void doSendKeys(By locator, String value) {
 			log.info("entering the value : " + value + " into locator: " + locator);
 			if (value == null) {
 				log.error("value : " + value + " is null...");
 				throw new ElementException("===value can not be null====");
 			}
-			getElement(locator).sendKeys(value);
+			WebElement ele = getElement(locator);
+			ele.clear();
+			ele.sendKeys(value);
 		}
+		
 		public void doMultipleSendKeys(By locator, CharSequence... value) {
 
 			getElement(locator).sendKeys(value);

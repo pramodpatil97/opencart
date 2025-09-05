@@ -41,6 +41,7 @@ public class DriverFactory {
 		log.info("browser name : "+ browserName);
 		highlightEle =prop.getProperty("highlight");
 		optionsManager = new OptionsManager(prop);
+		
 		switch (browserName.trim().toLowerCase()) {
 		case "chrome":
 			//driver = new ChromeDriver();
@@ -86,18 +87,57 @@ public class DriverFactory {
 	 * This method is init the prop with properties file...
 	 * @return
 	 */
-	public Properties initProp() {
-		prop = new Properties();
-		try {
-			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
-			prop.load(ip);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	// mvn clean install -Denv="qa"
+		// mvn clean install
+		// mvn clean install -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml -Denv="dev"
+		public Properties initProp() {
+			prop = new Properties();
+			FileInputStream ip = null;
+
+			String envName = System.getProperty("env");
+			log.info("Env name =======>" + envName);
+
+			try {
+				if (envName == null) {
+					log.warn("no env.. is passed, hence running tcs on QA environment...by default..");
+					ip = new FileInputStream("./src/test/resources/config/config.qa.properties");
+				}
+
+				else {
+					switch (envName.trim().toLowerCase()) {
+					case "qa":
+						ip = new FileInputStream("./src/test/resources/config/config.qa.properties");
+						break;
+					case "stage":
+						ip = new FileInputStream("./src/test/resources/config/config.stage.properties");
+						break;
+					case "uat":
+						ip = new FileInputStream("./src/test/resources/config/config.uat.properties");
+						break;
+					case "dev":
+						ip = new FileInputStream("./src/test/resources/config/config.dev.properties");
+						break;
+					case "prod":
+						ip = new FileInputStream("./src/test/resources/config/config.properties");
+						break;
+					default:
+						log.error("Env value is invalid...plz pass the right env value..");
+						throw new FrameworkException("====INVALID ENVIRONMENT====");
+					}
+				}
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+
+			try {
+				prop.load(ip);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return prop;
 		}
-		return prop;
-	}
 	/**
 	 * takescreenshot
 	 */
