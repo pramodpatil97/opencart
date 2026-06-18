@@ -93,7 +93,10 @@ public class ProductInfoPage {
 		productMap.put("extaxprice", exTaxValue);
 
 	}
-
+    // 1. add qty
+	// click on add to cart
+	//click on shopping cart
+	
 	
 	
 

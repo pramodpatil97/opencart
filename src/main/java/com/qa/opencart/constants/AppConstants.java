@@ -12,7 +12,7 @@ public class AppConstants {
 	public static final int DEFAULT_FOOTER_LINKS_COUNT = 15;	
 
 	
-	public static final String LOGIN_PAGE_TITLE = "Acount Login";
+	public static final String LOGIN_PAGE_TITLE = "Account Login";
 	public static final String LOGIN_PAGE_FRACTION_URL = "route=account/login";
 	
 	public static final String ACC_PAGE_TITLE = "My Account";
@@ -34,6 +34,18 @@ public class AppConstants {
 	
 	public static final String YOURSTORE_PAGE_TITLE = "Your Store";
 	public static final String YOURSTORE_PAGE_FRACTION_URL = "route=common/home";
+	
+	public static final String WISHLIST_PAGE_TITLE = "My Wish List";
+	public static final String WISHLIST_PAGE_FRACTION_URL = "route=account/wishlist";
+	
+	public static final String ORDER_HISTORY_PAGE_TITLE = "Order History";
+	public static final String ORDER_HISTORY_PAGE_FRACTION_URL = "route=account/order";
+	
+	public static final String Returns_PAGE_TITLE = "Product Returns";
+	public static final String Returns_PAGE_FRACTION_URL = "route=account/return";
+	
+	public static final String Transactions_PAGE_TITLE = "Your Transactions";
+	public static final String Transactions_PAGE_FRACTION_URL = "route=account/transaction";
 	
 	}
 

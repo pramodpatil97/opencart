@@ -20,6 +20,7 @@ public class LoginPage {
 	private final By password = By.id("input-password");
 	private final By loginBtn = By.xpath("//input[@value='Login']");
 	private final By forgotPwdLink = By.linkText("Forgotten Password");
+	private final By wishList = By.xpath("(//a[text()='Wish List'])[1]");
 	private final By header = By.tagName("h2");
 	private final By registerLink = By.linkText("Register");
 	private final By loginErrorMessg = By.cssSelector("div.alert.alert-danger.alert-dismissible");
@@ -87,5 +88,6 @@ public class LoginPage {
 		eleUtil.waitForElementVisible(registerLink, AppConstants.DEFAULT_SHORT_WAIT).click();
 		return new RegisterPage(driver);
 	}
+	
 
 }

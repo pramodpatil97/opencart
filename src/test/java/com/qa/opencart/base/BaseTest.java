@@ -21,9 +21,13 @@ import com.qa.opencart.pages.AccountLogoutPage;
 import com.qa.opencart.pages.AccountsPage;
 import com.qa.opencart.pages.CommonsPage;
 import com.qa.opencart.pages.LoginPage;
+import com.qa.opencart.pages.MyWishListPage;
+import com.qa.opencart.pages.OrderHistoryPage;
 import com.qa.opencart.pages.ProductInfoPage;
 import com.qa.opencart.pages.RegisterPage;
+import com.qa.opencart.pages.ReturnsPage;
 import com.qa.opencart.pages.SearchResultsPage;
+import com.qa.opencart.pages.TransactionsPage;
 import com.qa.opencart.pages.YourStorePage;
 import com.qa.opencart.test.AccountsPageTest;
 
@@ -45,10 +49,14 @@ public class BaseTest {
 	protected YourStorePage urStore;
 	protected RegisterPage registerPage;
 	protected CommonsPage commonsPage;
+	protected MyWishListPage wishPage;
+	protected OrderHistoryPage orderHistoryPage;
+	protected ReturnsPage returnsPage;
+	protected TransactionsPage transactionsPage;
 	
 	@Description("launch the browser: {0} and url")
 	@Parameters ("browser")
-	@BeforeTest
+	@BeforeTest //BT-->BC
 	public void setUp(@Optional("chrome") String browserName) {
 		df = new DriverFactory();
 		prop = df.initProp();

@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.qa.opencart.base.BaseTest;
 import com.qa.opencart.constants.AppConstants;
+import com.qa.opencart.pages.AccountLogoutPage;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -54,6 +55,7 @@ public class LogoutTest extends BaseTest {
 		public void ExitPageTest() {	
 			urStore = accLogout.doLogout();
 		}
+	
 		@Description("ExitPageTestTitle Test....")
 		@Owner("Pramod Patil")
 		@Severity(SeverityLevel.MINOR)
@@ -93,6 +95,13 @@ public class LogoutTest extends BaseTest {
 		    String actURL = loginPage.getLoginPageURL();
 			Assert.assertTrue(actURL.contains(AppConstants.LOGIN_PAGE_FRACTION_URL));
 		}
-
-
+//		@Description("LoginPageTestTitle Test....")
+//		@Owner("Pramod Patil")
+//		@Severity(SeverityLevel.MINOR)
+//		@Test(dependsOnMethods = "LogOutTestURL")
+//		public void navigateToLogin() {
+//			accLogout.navigateToLoginPage();
+//			String actTitle = loginPage.getLoginPageTitle();
+//			Assert.assertEquals(actTitle, AppConstants.LOGIN_PAGE_TITLE);
+//		}
 }

@@ -19,6 +19,7 @@ public class AccountLogoutPage {
 		}
 		private final By logoutHeader = By.tagName("h1");
 		private final By logoutBtn=By.xpath("//a[text()='Continue']");
+		private final By loginPage = By.xpath("//a[text()='Account']");
 		
 		@Step("Logout page title exist...")
 		public String getLogoutPageTitle() {
@@ -40,6 +41,11 @@ public class AccountLogoutPage {
 		public YourStorePage doLogout() {
 			eleUtil.doClick(logoutBtn);
 			return new YourStorePage(driver);
+		}
+		@Step("Click on account btn...")
+		public LoginPage navigateToLoginPage() {
+			eleUtil.doClick(loginPage);
+			return new LoginPage(driver);
 		}
 }
 
